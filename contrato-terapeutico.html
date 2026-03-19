@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrato Terapeutico - Flavia Goncalves Moreira</title>
+    <script src="https://unpkg.com/docx@8.2.3/build/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #5B7B6A;
+            --primary-light: #8FAF9F;
+            --primary-dark: #3D5A4A;
+            --bg: #F7F5F0;
+            --bg-card: #FFFFFF;
+            --text: #2D2D2D;
+            --text-light: #6B6B6B;
+            --border: #E0DDD5;
+            --accent: #C4A882;
+            --whatsapp: #25D366;
+            --whatsapp-dark: #128C7E;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background: var(--primary-dark);
+            gap: 0;
+        }
+
+        .tab-btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            background: transparent;
+            color: rgba(255,255,255,0.6);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            font-weight: 500;
+        }
+
+        .tab-btn:hover {
+            color: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .tab-btn.active {
+            color: white;
+            border-bottom-color: var(--accent);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* FORM STYLES */
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+        }
+
+        .card h2 {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--border);
+            font-weight: 600;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-row.single {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.65rem 0.9rem;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            background: #FAFAF8;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(61,90,74,0.3);
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #B0956E;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* PREVIEW */
+        .preview-area {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2.5rem;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            font-size: 0.92rem;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .preview-area h3 {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .preview-area .section-title {
+            font-weight: bold;
+            margin-top: 1.2rem;
+            margin-bottom: 0.4rem;
+            color: var(--primary-dark);
+        }
+
+        .preview-area p {
+            margin-bottom: 0.8rem;
+            text-align: justify;
+        }
+
+        .preview-area .signatures {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .preview-area .sig-line {
+            border-top: 1px solid #333;
+            padding-top: 0.5rem;
+            margin-top: 3rem;
+            font-size: 0.85rem;
+        }
+
+        /* WHATSAPP TAB */
+        .msg-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--whatsapp);
+        }
+
+        .msg-card h3 {
+            color: var(--whatsapp-dark);
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .msg-card .msg-text {
+            background: #F0F7F0;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            color: #333;
+            margin-bottom: 0.8rem;
+            border: 1px solid #D5E8D5;
+        }
+
+        .btn-copy {
+            background: var(--whatsapp);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-copy:hover {
+            background: var(--whatsapp-dark);
+        }
+
+        .btn-copy.copied {
+            background: var(--primary-dark);
+        }
+
+        .msg-category {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            font-weight: 600;
+        }
+
+        .msg-category:first-child {
+            margin-top: 0;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-dark);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .preview-area .signatures { grid-template-columns: 1fr; }
+            .tab-btn { padding: 0.8rem 1.2rem; font-size: 0.9rem; }
+            .container { padding: 1rem; }
+            .card { padding: 1.2rem; }
+        }
+
+        .info-note {
+            background: #FFF9EE;
+            border: 1px solid #F0DFB8;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            font-size: 0.85rem;
+            color: #7A6530;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Contrato Terapeutico</h1>
+    <p>Psicoterapia | Flavia Goncalves Moreira - CRP 04/84615</p>
+</div>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('contrato')">Gerar Contrato</button>
+    <button class="tab-btn" onclick="switchTab('whatsapp')">Mensagens WhatsApp</button>
+</div>
+
+<!-- TAB 1: CONTRATO -->
+<div class="container">
+<div id="tab-contrato" class="tab-content active">
+
+    <div class="info-note">
+        Preencha os campos abaixo para gerar o contrato terapeutico personalizado. Voce pode visualizar, baixar em DOCX ou gerar um PDF.
+    </div>
+
+    <!-- DADOS DO PACIENTE -->
+    <div class="card">
+        <h2>Dados do(a) Consulente (Contratante)</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Nome Completo *</label>
+                <input type="text" id="pac_nome" value="Lucca Fernandes Alves Silveira">
+            </div>
+            <div class="form-group">
+                <label>Nacionalidade / Estado Civil</label>
+                <input type="text" id="pac_nacionalidade" value="Brasileiro, solteiro">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Profissao</label>
+                <input type="text" id="pac_profissao" value="Assistente Administrativo">
+            </div>
+            <div class="form-group">
+                <label>CPF *</label>
+                <input type="text" id="pac_cpf" value="019.992.866-50">
+            </div>
+        </div>
+        <div class="form-row single">
+            <div class="form-group">
+                <label>Endereco Completo</label>
+                <input type="text" id="pac_endereco" value="Rua Pio XI, 50, CS 11 - CEP 31150-680">
+            </div>
+        </div>
+    </div>
+
+    <!-- DADOS DA PSICOLOGA -->
+    <div class="card">
+        <h2>Dados da Psicologa (Contratada)</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Nome Completo</label>
+                <input type="text" id="psi_nome" value="Flavia Goncalves Moreira">
+            </div>
+            <div class="form-group">
+                <label>Nacionalidade / Estado Civil</label>
+                <input type="text" id="psi_nacionalidade" value="Brasileira, solteira">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>CRP</label>
+                <input type="text" id="psi_crp" value="04/84615">
+            </div>
+            <div class="form-group">
+                <label>CPF</label>
+                <input type="text" id="psi_cpf" value="019.572.736-31">
+            </div>
+        </div>
+        <div class="form-row single">
+            <div class="form-group">
+                <label>Endereco do Consultorio</label>
+                <input type="text" id="psi_endereco" value="Rua Rio Negro, 1048, Barroca, Belo Horizonte/MG - CEP 30431-058">
+            </div>
+        </div>
+    </div>
+
+    <!-- DADOS DO SERVICO -->
+    <div class="card">
+        <h2>Condicoes do Servico</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Modalidade</label>
+                <input type="text" id="srv_modalidade" value="Psicoterapia">
+            </div>
+            <div class="form-group">
+                <label>Duracao das sessoes</label>
+                <input type="text" id="srv_duracao" value="50 a 60 minutos">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Frequencia</label>
+                <input type="text" id="srv_frequencia" value="1 vez por semana">
+            </div>
+            <div class="form-group">
+                <label>Horario</label>
+                <input type="text" id="srv_horario" value="A combinar entre as partes">
+            </div>
+        </div>
+    </div>
+
+    <!-- FINANCEIRO -->
+    <div class="card">
+        <h2>Condicoes Financeiras</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Valor por sessao (R$)</label>
+                <input type="text" id="fin_sessao" value="100,00">
+            </div>
+            <div class="form-group">
+                <label>Valor da mensalidade (R$)</label>
+                <input type="text" id="fin_mensal" value="400,00">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Vencimento</label>
+                <input type="text" id="fin_vencimento" value="Ate o 5o dia util de cada mes">
+            </div>
+            <div class="form-group">
+                <label>Indice de reajuste anual</label>
+                <select id="fin_reajuste">
+                    <option value="IPCA ou IGP-M" selected>IPCA ou IGP-M</option>
+                    <option value="IPCA">IPCA</option>
+                    <option value="IGP-M">IGP-M</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Plano de Mensalidade</label>
+                <select id="fin_plano">
+                    <option value="B">Mensalidade B (valor social/democratico)</option>
+                    <option value="A">Mensalidade A (R$ 800,00)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIGENCIA -->
+    <div class="card">
+        <h2>Vigencia e Assinatura</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Vigencia (meses)</label>
+                <input type="number" id="vig_meses" value="12">
+            </div>
+            <div class="form-group">
+                <label>Data de assinatura</label>
+                <input type="date" id="vig_data" value="2026-03-06">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Foro</label>
+                <input type="text" id="vig_foro" value="Comarca de Belo Horizonte/MG">
+            </div>
+        </div>
+    </div>
+
+    <!-- PREVIEW & BUTTONS -->
+    <div class="card">
+        <h2>Visualizacao do Contrato</h2>
+        <div class="btn-group" style="margin-bottom: 1.5rem; margin-top: 0;">
+            <button class="btn btn-outline" onclick="generatePreview()">Atualizar Visualizacao</button>
+        </div>
+        <div id="preview" class="preview-area">
+            <p style="text-align:center; color: var(--text-light);">Clique em "Atualizar Visualizacao" para ver o contrato.</p>
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <button class="btn btn-primary" onclick="generateDOCX()">Baixar DOCX</button>
+        <button class="btn btn-secondary" onclick="generatePDF()">Baixar PDF</button>
+    </div>
+
+</div>
+
+<!-- TAB 2: WHATSAPP -->
+<div id="tab-whatsapp" class="tab-content">
+
+    <div class="info-note">
+        Mensagens pre-montadas para enviar por WhatsApp, organizadas por tema. Clique em "Copiar" para copiar o texto e colar no WhatsApp.
+    </div>
+
+    <!-- BOAS VINDAS -->
+    <h3 class="msg-category">Boas-vindas e Inicio do Processo</h3>
+
+    <div class="msg-card">
+        <h3>Apresentacao do Contrato Terapeutico</h3>
+        <div class="msg-text">Ola, [NOME]! Tudo bem?
+
+Que bom que vamos iniciar esse caminho juntos(as). Antes do nosso primeiro encontro, vou te enviar algumas informacoes importantes sobre como funciona o acompanhamento terapeutico.
+
+A psicoterapia e um processo que se constroi ao longo do tempo, a partir da presenca, da escuta e do vinculo. Para que esse espaco seja seguro e confiavel, alguns combinados precisam estar claros desde o inicio.
+
+Vou te enviar os principais pontos nas proximas mensagens, e qualquer duvida voce pode trazer para a sessao. Combinado?</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+    <div class="msg-card">
+        <h3>Envio do Contrato/Formulario</h3>
+        <div class="msg-text">Ola, [NOME]!
+
+Estou te enviando o formulario de acompanhamento clinico. Ele faz parte do processo terapeutico e apresenta os combinados que ajudam a sustentar o cuidado, a continuidade e a qualidade do nosso trabalho.
+
+Esses combinados existem para proteger o processo terapeutico, garantindo constancia, disponibilidade e um enquadre que favoreca o desenvolvimento do vinculo.
+
+Peço que leia com atencao e, caso surjam duvidas ou incomodos, isso pode e deve ser trazido para a sessao. Falar sobre o que acontece dentro e fora do processo tambem faz parte da psicoterapia.</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+    <!-- FINANCEIRO -->
+    <h3 class="msg-category">Combinados Financeiros</h3>
+
+    <div class="msg-card">
+        <h3>Explicacao do Modelo de Mensalidade</h3>
+        <div class="msg-text">Ola, [NOME]! Quero te explicar como funciona o modelo financeiro do acompanhamento.
+
+O acompanhamento funciona no modelo de mensalidade, e nao por sessoes avulsas. Isso porque meu trabalho nao se limita ao momento da sessao: envolve preparo, estudo continuo, supervisao, reflexao clinica, documentacao e disponibilidade para que esse espaco exista com qualidade.
+
+A mensalidade contempla:
+- A reserva e protecao do seu horario na agenda
+- A manutencao da clinica e do servico
+- Os encontros terapeuticos semanais
+- O desenvolvimento continuo e personalizado do acompanhamento
+
+O valor da sua mensalidade e de R$ [VALOR], com vencimento ate o 5o dia util de cada mes.
+
+Qualquer duvida, estou por aqui!</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+    <div class="msg-card">
+        <h3>Contribuicao Consciente (Vagas Democraticas)</h3>
+        <div class="msg-text">[NOME], quero compartilhar algo com voce.
+
+A clinica funciona majoritariamente no modelo de mensalidade integral, mas tambem disponibiliza, de forma limitada, vagas com valores diferenciados pensadas a partir do contexto social e financeiro de cada pessoa.
+
+Se em algum momento voce perceber que tem condicoes de contribuir com um valor maior do que o combinado, saiba que essa contribuicao pode ajudar a abrir ou manter vagas democraticas para que outras pessoas tambem tenham acesso a terapia.
+
+Essa contribuicao e totalmente opcional, nao e uma obrigacao nem uma expectativa. So me avisar em sessao, caso queira.</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+    <!-- DESMARCACOES -->
+    <h3 class="msg-category">Desmarcacoes e Faltas</h3>
+
+    <div class="msg-card">
+        <h3>Regra de Desmarcacao pelo Consulente</h3>
+        <div class="msg-text">Ola, [NOME]! Quero reforcar um combinado importante sobre desmarcacoes.
+
+Quando voce desmarca uma sessao, a mensalidade e mantida, pois o horario segue reservado exclusivamente para voce. A reposicao pode ser combinada apenas se houver disponibilidade de agenda, nao sendo garantida.
+
+Caso precise desmarcar, peco que me avise com pelo menos 24 horas de antecedencia. Faltas sem aviso previo sao cobradas normalmente.
+
+Esse combinado existe para proteger o espaco terapeutico e a organizacao da clinica. Qualquer duvida, podemos conversar em sessao!</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+    <div class="msg-card">
+        <h3>Quando a Psicologa Desmarca</h3>
+        <div class="msg-text">[NOME], quero esclarecer como funciona quando eu preciso desmarcar uma sessao.
+
+Quando eu desmarco, busco oferecer reposicao dentro do mesmo mes. Caso voce nao possa comparecer ao horario proposto para reposicao, o valor da sessao sera descontado da mensalidade seguinte.
+
+Transparencia e cuidado fazem parte do nosso combinado!</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+    <!-- MESES COM 5 SEMANAS / FERIADOS -->
+    <h3 class="msg-category">Meses com 5 Semanas, Feriados e Ferias</h3>
+
+    <div class="msg-card">
+        <h3>Meses com 5 Semanas</h3>
+        <div class="msg-text">Ola, [NOME]! So para esclarecer um ponto sobre meses com cinco semanas.
+
+A mensalidade refere-se ao periodo mensal de acompanhamento, independentemente do mes ter quatro ou cinco semanas. Em meses com cinco semanas, a realizacao de uma quinta sessao pode acontecer conforme disponibilidade de agenda, nao sendo obrigatoria nem garantida.
+
+Qualquer duvida, podemos conversar!</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+    <div class="msg-card">
+        <h3>Feriados e Ferias</h3>
+        <div class="msg-text">[NOME], sobre feriados e ferias:
+
+Sessoes que coincidirem com feriados nao sao automaticamente repostas. Havendo disponibilidade de agenda, a reposicao pode ser combinada.
+
+Ferias ou viagens suas nao suspendem a mensalidade, pois o horario e o espaco seguem reservados. Havendo disponibilidade, a reposicao pode ser combinada.
+
+Da minha parte, vou precisar usufruir de dois periodos de ferias ao longo do ano, que serao sempre comunicados com antecedencia.
+
+Qualquer duvida, estou por aqui!</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+    <!-- SETTING ONLINE -->
+    <h3 class="msg-category">Preparacao para o Atendimento Online</h3>
+
+    <div class="msg-card">
+        <h3>Cuidados para Sessao Online</h3>
+        <div class="msg-text">Ola, [NOME]! Quero compartilhar alguns cuidados para as nossas sessoes online.
+
+O atendimento online tambem e um espaco clinico e, como tal, precisa de alguns cuidados para que o encontro aconteca com qualidade, sigilo e presenca:
+
+- Esteja em um ambiente reservado e silencioso, onde possa falar com liberdade
+- Sempre que possivel, use fones de ouvido para proteger a confidencialidade
+- Garanta uma conexao estavel de internet
+- Acesse o atendimento de um dispositivo que favoreca a atencao e o vinculo
+
+Sobre a camera: no atendimento online, alem da escuta, observo expressoes, gestos e posturas que fazem parte da leitura clinica. Por isso, quando possivel, peco que a camera esteja ajustada de forma que eu consiga te ver com clareza, em local fixo.
+
+Esse cuidado nao precisa ser rigido ou perfeito. Caso haja limitacoes, a gente conversa e ajusta juntos(as).</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+    <!-- SIGILO -->
+    <h3 class="msg-category">Etica e Sigilo</h3>
+
+    <div class="msg-card">
+        <h3>Sigilo e Confidencialidade</h3>
+        <div class="msg-text">[NOME], um ponto fundamental:
+
+Todo o acompanhamento psicologico e regido por principios eticos, especialmente no que diz respeito ao sigilo profissional. Tudo o que e compartilhado em sessao e protegido por confidencialidade, conforme o Codigo de Etica Profissional do Psicologo.
+
+Esse e um dos pilares do nosso trabalho. Voce pode se sentir seguro(a) para compartilhar o que precisar nesse espaco.</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+    <!-- PAUSA / INTERRUPCAO -->
+    <h3 class="msg-category">Pausas e Interrupcao do Processo</h3>
+
+    <div class="msg-card">
+        <h3>Pausa ou Encerramento</h3>
+        <div class="msg-text">[NOME], caso em algum momento voce decida pausar ou interromper o acompanhamento, e importante que isso seja comunicado com antecedencia, de preferencia em sessao.
+
+O valor da mensalidade referente ao mes em que a interrupcao for avisada permanece devido, pois o horario e o espaco clinico ja estavam reservados.
+
+Em caso de pausa, a vaga deixa de ser reservada e podera ser disponibilizada para outra pessoa, nao havendo garantia de manutencao do mesmo horario no retorno.
+
+Esse combinado existe para proteger o espaco terapeutico e permitir que pausas e encerramentos acontecam de forma cuidadosa e responsavel.</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+    <!-- LEMBRETE -->
+    <h3 class="msg-category">Lembretes e Reforco</h3>
+
+    <div class="msg-card">
+        <h3>Lembrete de Pagamento</h3>
+        <div class="msg-text">Ola, [NOME]! Tudo bem?
+
+Passando para lembrar que o vencimento da mensalidade referente a este mes e ate o 5o dia util. Caso ja tenha efetuado o pagamento, pode desconsiderar essa mensagem.
+
+Qualquer duvida ou necessidade de ajuste, estou por aqui!</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+    <div class="msg-card">
+        <h3>Confirmacao de Sessao</h3>
+        <div class="msg-text">Ola, [NOME]! Confirmando nossa sessao de [DIA] as [HORARIO]. Te espero! Ate la.</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+    <div class="msg-card">
+        <h3>Reajuste Anual</h3>
+        <div class="msg-text">Ola, [NOME]! Tudo bem?
+
+Conforme previsto no nosso contrato terapeutico, o valor da mensalidade passa por um reajuste anual com base no indice [IPCA/IGP-M].
+
+A partir do proximo mes, o novo valor sera de R$ [NOVO VALOR]. Esse reajuste existe para garantir a sustentabilidade e a qualidade do espaco terapeutico.
+
+Caso tenha alguma duvida ou queira conversar sobre isso, podemos tratar em sessao. Estou por aqui!</div>
+        <button class="btn-copy" onclick="copyMsg(this)">Copiar</button>
+    </div>
+
+</div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+
+<script>
+// TAB SWITCHING
+function switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+    if (tab === 'contrato') {
+        document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        document.getElementById('tab-contrato').classList.add('active');
+    } else {
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        document.getElementById('tab-whatsapp').classList.add('active');
+    }
+}
+
+// TOAST
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// COPY MESSAGE
+function copyMsg(btn) {
+    const text = btn.previousElementSibling.textContent.trim();
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = 'Copiar';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
+
+// GET FORM DATA
+function getData() {
+    const formatDate = (dateStr) => {
+        if (!dateStr) return '';
+        const [y, m, d] = dateStr.split('-');
+        const months = ['janeiro','fevereiro','marco','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+        return `${parseInt(d)} de ${months[parseInt(m)-1]} de ${y}`;
+    };
+
+    return {
+        pac_nome: document.getElementById('pac_nome').value,
+        pac_nacionalidade: document.getElementById('pac_nacionalidade').value,
+        pac_profissao: document.getElementById('pac_profissao').value,
+        pac_cpf: document.getElementById('pac_cpf').value,
+        pac_endereco: document.getElementById('pac_endereco').value,
+        psi_nome: document.getElementById('psi_nome').value,
+        psi_nacionalidade: document.getElementById('psi_nacionalidade').value,
+        psi_crp: document.getElementById('psi_crp').value,
+        psi_cpf: document.getElementById('psi_cpf').value,
+        psi_endereco: document.getElementById('psi_endereco').value,
+        srv_modalidade: document.getElementById('srv_modalidade').value,
+        srv_duracao: document.getElementById('srv_duracao').value,
+        srv_frequencia: document.getElementById('srv_frequencia').value,
+        srv_horario: document.getElementById('srv_horario').value,
+        fin_sessao: document.getElementById('fin_sessao').value,
+        fin_mensal: document.getElementById('fin_mensal').value,
+        fin_vencimento: document.getElementById('fin_vencimento').value,
+        fin_reajuste: document.getElementById('fin_reajuste').value,
+        fin_plano: document.getElementById('fin_plano').value,
+        vig_meses: document.getElementById('vig_meses').value,
+        vig_data: formatDate(document.getElementById('vig_data').value),
+        vig_foro: document.getElementById('vig_foro').value,
+    };
+}
+
+// CONTRACT TEXT BUILDER
+function buildContractHTML(d) {
+    return `
+<h3>CONTRATO DE PRESTACAO DE SERVICOS DE PSICOTERAPIA</h3>
+
+<p class="section-title">DAS PARTES</p>
+
+<p><strong>CONTRATANTE:</strong> ${d.pac_nome}, ${d.pac_nacionalidade}, ${d.pac_profissao}, inscrito(a) no CPF sob o no ${d.pac_cpf}, residente e domiciliado(a) no endereco ${d.pac_endereco}, doravante denominado(a) CONTRATANTE.</p>
+
+<p><strong>CONTRATADA:</strong> ${d.psi_nome}, ${d.psi_nacionalidade}, Psicologa, inscrita no Conselho Regional de Psicologia sob o CRP ${d.psi_crp}, inscrita no CPF sob o no ${d.psi_cpf}, com consultorio situado na ${d.psi_endereco}, doravante denominada CONTRATADA.</p>
+
+<p>As partes acima identificadas celebram o presente contrato de prestacao de servicos de psicoterapia, que sera regido pelas clausulas e condicoes a seguir:</p>
+
+<p class="section-title">CLAUSULA PRIMEIRA - DO OBJETO</p>
+
+<p>1.1. O presente contrato tem por objeto a prestacao de servicos de ${d.srv_modalidade} pela CONTRATADA ao(a) CONTRATANTE, em sessoes individuais com duracao de ${d.srv_duracao}, com frequencia de ${d.srv_frequencia}.</p>
+
+<p>1.2. O horario das sessoes sera ${d.srv_horario.toLowerCase()}, em dia e horario fixo semanal, previamente combinado e reservado exclusivamente para o(a) CONTRATANTE.</p>
+
+<p>1.3. O acompanhamento psicologico e regido por principios eticos, especialmente no que diz respeito ao sigilo profissional. Tudo o que e compartilhado em sessao e protegido por confidencialidade, conforme o Codigo de Etica Profissional do Psicologo (Resolucao CFP no 010/2005).</p>
+
+<p class="section-title">CLAUSULA SEGUNDA - DA REMUNERACAO E FORMA DE PAGAMENTO</p>
+
+<p>2.1. O(A) CONTRATANTE pagara a CONTRATADA o valor mensal de R$ ${d.fin_mensal} (${valorPorExtenso(d.fin_mensal)} reais), correspondente ao valor de R$ ${d.fin_sessao} (${valorPorExtenso(d.fin_sessao)} reais) por sessao, em regime de mensalidade.</p>
+
+<p>2.2. A mensalidade devera ser paga ${d.fin_vencimento.toLowerCase()}.</p>
+
+<p>2.3. O valor da mensalidade sera reajustado anualmente com base no indice ${d.fin_reajuste}, ou outro indice que venha a substitui-lo.</p>
+
+<p>2.4. A mensalidade contempla: a reserva e protecao do horario na agenda da CONTRATADA; a manutencao da clinica e do servico; os encontros terapeuticos semanais; e o desenvolvimento continuo e personalizado do acompanhamento.</p>
+
+<p class="section-title">CLAUSULA TERCEIRA - DAS DESMARCACOES E FALTAS</p>
+
+<p>3.1. Quando o(a) CONTRATANTE desmarcar uma sessao, a mensalidade e mantida, pois o horario segue reservado. A reposicao pode ser combinada apenas se houver disponibilidade de agenda, nao sendo garantida.</p>
+
+<p>3.2. Faltas sem aviso previo de pelo menos 24 (vinte e quatro) horas de antecedencia serao cobradas normalmente como sessao realizada.</p>
+
+<p>3.3. Faltas com aviso antecipado possibilitam a reposicao da sessao na mesma semana, conforme disponibilidade de agenda.</p>
+
+<p>3.4. Quando a CONTRATADA desmarcar uma sessao, buscara oferecer reposicao dentro do mesmo mes. Caso o(a) CONTRATANTE nao possa comparecer ao horario proposto, o valor da sessao sera descontado da mensalidade seguinte.</p>
+
+<p class="section-title">CLAUSULA QUARTA - DOS MESES COM CINCO SEMANAS</p>
+
+<p>4.1. A mensalidade refere-se ao periodo mensal de acompanhamento, independentemente de o mes ter quatro ou cinco semanas. Em meses com cinco semanas, a realizacao de uma quinta sessao pode ocorrer conforme disponibilidade de agenda, nao sendo obrigatoria nem garantida.</p>
+
+<p class="section-title">CLAUSULA QUINTA - DOS FERIADOS E FERIAS</p>
+
+<p>5.1. Sessoes que coincidirem com feriados nao sao automaticamente repostas. Havendo disponibilidade de agenda, a reposicao pode ser combinada.</p>
+
+<p>5.2. Ferias ou viagens do(a) CONTRATANTE nao suspendem a mensalidade, pois o horario e o espaco seguem reservados.</p>
+
+<p>5.3. A CONTRATADA podera usufruir de ate dois periodos de ferias ao longo do ano, previamente comunicados ao(a) CONTRATANTE.</p>
+
+<p class="section-title">CLAUSULA SEXTA - DA PAUSA OU INTERRUPCAO DO PROCESSO</p>
+
+<p>6.1. Caso o(a) CONTRATANTE decida pausar ou interromper o acompanhamento, e necessario comunicar com antecedencia, preferencialmente em sessao.</p>
+
+<p>6.2. O valor da mensalidade referente ao mes em que a interrupcao for avisada permanece devido, pois o horario e o espaco clinico ja estavam reservados.</p>
+
+<p>6.3. Em caso de pausa, a vaga deixa de ser reservada e podera ser disponibilizada para outra pessoa, nao havendo garantia de manutencao do mesmo horario no retorno.</p>
+
+<p class="section-title">CLAUSULA SETIMA - DA VIGENCIA</p>
+
+<p>7.1. O presente contrato tera vigencia de ${d.vig_meses} (${mesesPorExtenso(d.vig_meses)}) meses, contados a partir da data de sua assinatura, podendo ser renovado por acordo entre as partes.</p>
+
+<p class="section-title">CLAUSULA OITAVA - DO FORO</p>
+
+<p>8.1. As partes elegem o foro da ${d.vig_foro} para dirimir quaisquer duvidas ou controversias oriundas do presente contrato, renunciando a qualquer outro, por mais privilegiado que seja.</p>
+
+<p>E por estarem de acordo, as partes assinam o presente contrato em duas vias de igual teor e forma.</p>
+
+<p style="text-align: center; margin-top: 1rem;">${d.vig_foro.replace('Comarca de ', '')}, ${d.vig_data}.</p>
+
+<div class="signatures">
+    <div>
+        <div class="sig-line">
+            ${d.pac_nome}<br>
+            CPF: ${d.pac_cpf}<br>
+            CONTRATANTE
+        </div>
+    </div>
+    <div>
+        <div class="sig-line">
+            ${d.psi_nome}<br>
+            CRP: ${d.psi_crp}<br>
+            CONTRATADA
+        </div>
+    </div>
+</div>
+`;
+}
+
+function valorPorExtenso(val) {
+    const map = {
+        '100,00': 'cem', '200,00': 'duzentos', '300,00': 'trezentos',
+        '400,00': 'quatrocentos', '500,00': 'quinhentos', '600,00': 'seiscentos',
+        '700,00': 'setecentos', '800,00': 'oitocentos', '900,00': 'novecentos',
+        '1.000,00': 'mil'
+    };
+    return map[val] || val;
+}
+
+function mesesPorExtenso(m) {
+    const map = {1:'um',2:'dois',3:'tres',4:'quatro',5:'cinco',6:'seis',
+        7:'sete',8:'oito',9:'nove',10:'dez',11:'onze',12:'doze',
+        18:'dezoito',24:'vinte e quatro'};
+    return map[parseInt(m)] || m;
+}
+
+// PREVIEW
+function generatePreview() {
+    const d = getData();
+    document.getElementById('preview').innerHTML = buildContractHTML(d);
+}
+
+// GENERATE DOCX
+async function generateDOCX() {
+    const d = getData();
+    const { Document, Packer, Paragraph, TextRun, AlignmentType, BorderStyle, TabStopPosition, TabStopType } = docx;
+
+    const titleStyle = { bold: true, size: 26, font: 'Calibri' };
+    const sectionStyle = { bold: true, size: 22, font: 'Calibri' };
+    const normalStyle = { size: 22, font: 'Calibri' };
+    const smallStyle = { size: 20, font: 'Calibri' };
+
+    function normalPara(text, options = {}) {
+        return new Paragraph({
+            alignment: options.center ? AlignmentType.CENTER : AlignmentType.JUSTIFIED,
+            spacing: { after: 200 },
+            children: [new TextRun({ ...normalStyle, ...options, text })],
+        });
+    }
+
+    function sectionTitle(text) {
+        return new Paragraph({
+            spacing: { before: 300, after: 150 },
+            children: [new TextRun({ ...sectionStyle, text })],
+        });
+    }
+
+    const doc = new Document({
+        sections: [{
+            properties: {
+                page: {
+                    margin: { top: 1440, bottom: 1440, left: 1440, right: 1440 },
+                },
+            },
+            children: [
+                new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    spacing: { after: 400 },
+                    children: [new TextRun({ ...titleStyle, text: 'CONTRATO DE PRESTACAO DE SERVICOS DE PSICOTERAPIA' })],
+                }),
+
+                sectionTitle('DAS PARTES'),
+
+                normalPara(`CONTRATANTE: ${d.pac_nome}, ${d.pac_nacionalidade}, ${d.pac_profissao}, inscrito(a) no CPF sob o no ${d.pac_cpf}, residente e domiciliado(a) no endereco ${d.pac_endereco}, doravante denominado(a) CONTRATANTE.`),
+
+                normalPara(`CONTRATADA: ${d.psi_nome}, ${d.psi_nacionalidade}, Psicologa, inscrita no Conselho Regional de Psicologia sob o CRP ${d.psi_crp}, inscrita no CPF sob o no ${d.psi_cpf}, com consultorio situado na ${d.psi_endereco}, doravante denominada CONTRATADA.`),
+
+                normalPara('As partes acima identificadas celebram o presente contrato de prestacao de servicos de psicoterapia, que sera regido pelas clausulas e condicoes a seguir:'),
+
+                sectionTitle('CLAUSULA PRIMEIRA - DO OBJETO'),
+
+                normalPara(`1.1. O presente contrato tem por objeto a prestacao de servicos de ${d.srv_modalidade} pela CONTRATADA ao(a) CONTRATANTE, em sessoes individuais com duracao de ${d.srv_duracao}, com frequencia de ${d.srv_frequencia}.`),
+
+                normalPara(`1.2. O horario das sessoes sera ${d.srv_horario.toLowerCase()}, em dia e horario fixo semanal, previamente combinado e reservado exclusivamente para o(a) CONTRATANTE.`),
+
+                normalPara('1.3. O acompanhamento psicologico e regido por principios eticos, especialmente no que diz respeito ao sigilo profissional. Tudo o que e compartilhado em sessao e protegido por confidencialidade, conforme o Codigo de Etica Profissional do Psicologo (Resolucao CFP no 010/2005).'),
+
+                sectionTitle('CLAUSULA SEGUNDA - DA REMUNERACAO E FORMA DE PAGAMENTO'),
+
+                normalPara(`2.1. O(A) CONTRATANTE pagara a CONTRATADA o valor mensal de R$ ${d.fin_mensal} (${valorPorExtenso(d.fin_mensal)} reais), correspondente ao valor de R$ ${d.fin_sessao} (${valorPorExtenso(d.fin_sessao)} reais) por sessao, em regime de mensalidade.`),
+
+                normalPara(`2.2. A mensalidade devera ser paga ${d.fin_vencimento.toLowerCase()}.`),
+
+                normalPara(`2.3. O valor da mensalidade sera reajustado anualmente com base no indice ${d.fin_reajuste}, ou outro indice que venha a substitui-lo.`),
+
+                normalPara('2.4. A mensalidade contempla: a reserva e protecao do horario na agenda da CONTRATADA; a manutencao da clinica e do servico; os encontros terapeuticos semanais; e o desenvolvimento continuo e personalizado do acompanhamento.'),
+
+                sectionTitle('CLAUSULA TERCEIRA - DAS DESMARCACOES E FALTAS'),
+
+                normalPara('3.1. Quando o(a) CONTRATANTE desmarcar uma sessao, a mensalidade e mantida, pois o horario segue reservado. A reposicao pode ser combinada apenas se houver disponibilidade de agenda, nao sendo garantida.'),
+
+                normalPara('3.2. Faltas sem aviso previo de pelo menos 24 (vinte e quatro) horas de antecedencia serao cobradas normalmente como sessao realizada.'),
+
+                normalPara('3.3. Faltas com aviso antecipado possibilitam a reposicao da sessao na mesma semana, conforme disponibilidade de agenda.'),
+
+                normalPara('3.4. Quando a CONTRATADA desmarcar uma sessao, buscara oferecer reposicao dentro do mesmo mes. Caso o(a) CONTRATANTE nao possa comparecer ao horario proposto, o valor da sessao sera descontado da mensalidade seguinte.'),
+
+                sectionTitle('CLAUSULA QUARTA - DOS MESES COM CINCO SEMANAS'),
+
+                normalPara('4.1. A mensalidade refere-se ao periodo mensal de acompanhamento, independentemente de o mes ter quatro ou cinco semanas. Em meses com cinco semanas, a realizacao de uma quinta sessao pode ocorrer conforme disponibilidade de agenda, nao sendo obrigatoria nem garantida.'),
+
+                sectionTitle('CLAUSULA QUINTA - DOS FERIADOS E FERIAS'),
+
+                normalPara('5.1. Sessoes que coincidirem com feriados nao sao automaticamente repostas. Havendo disponibilidade de agenda, a reposicao pode ser combinada.'),
+
+                normalPara('5.2. Ferias ou viagens do(a) CONTRATANTE nao suspendem a mensalidade, pois o horario e o espaco seguem reservados.'),
+
+                normalPara('5.3. A CONTRATADA podera usufruir de ate dois periodos de ferias ao longo do ano, previamente comunicados ao(a) CONTRATANTE.'),
+
+                sectionTitle('CLAUSULA SEXTA - DA PAUSA OU INTERRUPCAO DO PROCESSO'),
+
+                normalPara('6.1. Caso o(a) CONTRATANTE decida pausar ou interromper o acompanhamento, e necessario comunicar com antecedencia, preferencialmente em sessao.'),
+
+                normalPara('6.2. O valor da mensalidade referente ao mes em que a interrupcao for avisada permanece devido, pois o horario e o espaco clinico ja estavam reservados.'),
+
+                normalPara('6.3. Em caso de pausa, a vaga deixa de ser reservada e podera ser disponibilizada para outra pessoa, nao havendo garantia de manutencao do mesmo horario no retorno.'),
+
+                sectionTitle('CLAUSULA SETIMA - DA VIGENCIA'),
+
+                normalPara(`7.1. O presente contrato tera vigencia de ${d.vig_meses} (${mesesPorExtenso(d.vig_meses)}) meses, contados a partir da data de sua assinatura, podendo ser renovado por acordo entre as partes.`),
+
+                sectionTitle('CLAUSULA OITAVA - DO FORO'),
+
+                normalPara(`8.1. As partes elegem o foro da ${d.vig_foro} para dirimir quaisquer duvidas ou controversias oriundas do presente contrato, renunciando a qualquer outro, por mais privilegiado que seja.`),
+
+                normalPara('E por estarem de acordo, as partes assinam o presente contrato em duas vias de igual teor e forma.'),
+
+                normalPara(`${d.vig_foro.replace('Comarca de ', '')}, ${d.vig_data}.`, { center: true }),
+
+                new Paragraph({ spacing: { before: 600 } }),
+                new Paragraph({ spacing: { before: 600 } }),
+
+                new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    spacing: { after: 50 },
+                    children: [new TextRun({ ...normalStyle, text: '________________________________________' })],
+                }),
+                new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    spacing: { after: 50 },
+                    children: [new TextRun({ ...smallStyle, text: d.pac_nome })],
+                }),
+                new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    spacing: { after: 50 },
+                    children: [new TextRun({ ...smallStyle, text: `CPF: ${d.pac_cpf}` })],
+                }),
+                new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    spacing: { after: 300 },
+                    children: [new TextRun({ ...smallStyle, bold: true, text: 'CONTRATANTE' })],
+                }),
+
+                new Paragraph({ spacing: { before: 200 } }),
+
+                new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    spacing: { after: 50 },
+                    children: [new TextRun({ ...normalStyle, text: '________________________________________' })],
+                }),
+                new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    spacing: { after: 50 },
+                    children: [new TextRun({ ...smallStyle, text: d.psi_nome })],
+                }),
+                new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    spacing: { after: 50 },
+                    children: [new TextRun({ ...smallStyle, text: `CRP: ${d.psi_crp}` })],
+                }),
+                new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    children: [new TextRun({ ...smallStyle, bold: true, text: 'CONTRATADA' })],
+                }),
+            ],
+        }],
+    });
+
+    const blob = await Packer.toBlob(doc);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Contrato_Terapeutico_${d.pac_nome.replace(/\s+/g, '_')}.docx`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('DOCX gerado com sucesso!');
+}
+
+// GENERATE PDF
+function generatePDF() {
+    const d = getData();
+
+    const pdfContent = document.createElement('div');
+    pdfContent.style.fontFamily = 'Georgia, serif';
+    pdfContent.style.fontSize = '11pt';
+    pdfContent.style.lineHeight = '1.8';
+    pdfContent.style.color = '#222';
+    pdfContent.style.padding = '20px';
+    pdfContent.innerHTML = buildContractHTML(d)
+        .replace(/class="section-title"/g, 'style="font-weight:bold;margin-top:18px;margin-bottom:6px;font-size:11pt;"')
+        .replace(/class="signatures"/g, 'style="margin-top:60px;display:grid;grid-template-columns:1fr 1fr;gap:40px;text-align:center;"')
+        .replace(/class="sig-line"/g, 'style="border-top:1px solid #333;padding-top:8px;margin-top:60px;font-size:10pt;"')
+        .replace(/<h3>/g, '<h3 style="text-align:center;font-size:13pt;margin-bottom:20px;letter-spacing:1px;">');
+
+    const opt = {
+        margin: [15, 15, 15, 15],
+        filename: `Contrato_Terapeutico_${d.pac_nome.replace(/\s+/g, '_')}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+
+    html2pdf().set(opt).from(pdfContent).save().then(() => {
+        showToast('PDF gerado com sucesso!');
+    });
+}
+
+// INIT: auto-generate preview on load
+window.addEventListener('DOMContentLoaded', generatePreview);
+</script>
+
+</body>
+</html>
