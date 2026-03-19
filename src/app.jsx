@@ -38,7 +38,7 @@ const DEFAULT_DATA = {
   fin_plano: "B",
   vig_meses: "",
   vig_data: "",
-  vig_foro: "",
+  vig_foro: "Comarca de Belo Horizonte/MG",
 };
 
 const DEFAULT_DATA_MENOR = {
@@ -65,7 +65,7 @@ const DEFAULT_DATA_MENOR = {
   fin_plano: "B",
   vig_meses: "",
   vig_data: "",
-  vig_foro: "",
+  vig_foro: "Comarca de Belo Horizonte/MG",
 };
 
 /* ════════════════════════════════════════════
