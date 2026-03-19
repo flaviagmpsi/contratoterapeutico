@@ -18,27 +18,27 @@ const C = {
    DEFAULT CONTRACT DATA
    ════════════════════════════════════════════ */
 const DEFAULT_DATA = {
-  pac_nome: "Lucca Fernandes Alves Silveira",
-  pac_nacionalidade: "Brasileiro, solteiro",
-  pac_profissao: "Assistente Administrativo",
-  pac_cpf: "019.992.866-50",
-  pac_endereco: "Rua Pio XI, 50, CS 11 — CEP 31150-680",
-  psi_nome: "Flávia Gonçalves Moreira",
-  psi_nacionalidade: "Brasileira, solteira",
-  psi_crp: "04/84615",
-  psi_cpf: "019.572.736-31",
-  psi_endereco: "Rua Rio Negro, 1048, Barroca, Belo Horizonte/MG — CEP 30431-058",
-  srv_modalidade: "Psicoterapia",
-  srv_duracao: "50 a 60 minutos",
-  srv_frequencia: "1 vez por semana",
-  srv_horario: "A combinar entre as partes",
-  fin_sessao: "100,00",
-  fin_mensal: "400,00",
-  fin_vencimento: "Até o 5º dia útil de cada mês",
+  pac_nome: "",
+  pac_nacionalidade: "",
+  pac_profissao: "",
+  pac_cpf: "",
+  pac_endereco: "",
+  psi_nome: "",
+  psi_nacionalidade: "",
+  psi_crp: "",
+  psi_cpf: "",
+  psi_endereco: "",
+  srv_modalidade: "",
+  srv_duracao: "",
+  srv_frequencia: "",
+  srv_horario: "",
+  fin_sessao: "",
+  fin_mensal: "",
+  fin_vencimento: "",
   fin_plano: "B",
-  vig_meses: "12",
-  vig_data: "06 de março de 2026",
-  vig_foro: "Comarca de Belo Horizonte/MG",
+  vig_meses: "",
+  vig_data: "",
+  vig_foro: "",
 };
 
 const DEFAULT_DATA_MENOR = {
@@ -50,22 +50,22 @@ const DEFAULT_DATA_MENOR = {
   resp_parentesco: "",
   pac_nome: "",
   pac_nascimento: "",
-  psi_nome: "Flávia Gonçalves Moreira",
-  psi_nacionalidade: "Brasileira, solteira",
-  psi_crp: "04/84615",
-  psi_cpf: "019.572.736-31",
-  psi_endereco: "Rua Rio Negro, 1048, Barroca, Belo Horizonte/MG — CEP 30431-058",
-  srv_modalidade: "Psicoterapia",
-  srv_duracao: "50 a 60 minutos",
-  srv_frequencia: "1 vez por semana",
-  srv_horario: "A combinar entre as partes",
-  fin_sessao: "100,00",
-  fin_mensal: "400,00",
-  fin_vencimento: "Até o 5º dia útil de cada mês",
+  psi_nome: "",
+  psi_nacionalidade: "",
+  psi_crp: "",
+  psi_cpf: "",
+  psi_endereco: "",
+  srv_modalidade: "",
+  srv_duracao: "",
+  srv_frequencia: "",
+  srv_horario: "",
+  fin_sessao: "",
+  fin_mensal: "",
+  fin_vencimento: "",
   fin_plano: "B",
-  vig_meses: "12",
+  vig_meses: "",
   vig_data: "",
-  vig_foro: "Comarca de Belo Horizonte/MG",
+  vig_foro: "",
 };
 
 /* ════════════════════════════════════════════
@@ -224,13 +224,42 @@ const CLAUSE_ITEMS_MENOR = [
    EXPORT UTILITIES
    ════════════════════════════════════════════ */
 function valorPorExtenso(val) {
-  const map = {
-    "100,00": "cem", "200,00": "duzentos", "300,00": "trezentos",
-    "400,00": "quatrocentos", "500,00": "quinhentos", "600,00": "seiscentos",
-    "700,00": "setecentos", "800,00": "oitocentos", "900,00": "novecentos",
-    "1.000,00": "mil",
-  };
-  return map[val] || val;
+  const unidades = ["","um","dois","três","quatro","cinco","seis","sete","oito","nove"];
+  const especiais = ["dez","onze","doze","treze","quatorze","quinze","dezesseis","dezessete","dezoito","dezenove"];
+  const dezenas = ["","","vinte","trinta","quarenta","cinquenta","sessenta","setenta","oitenta","noventa"];
+  const centenas = ["","cento","duzentos","trezentos","quatrocentos","quinhentos","seiscentos","setecentos","oitocentos","novecentos"];
+
+  const str = String(val).replace(/\./g, "").replace(",00","").replace(",",".");
+  const num = parseFloat(str);
+  if (isNaN(num) || num <= 0) return val;
+  if (num === 100) return "cem";
+  if (num === 1000) return "mil";
+
+  const partes = [];
+  const milhar = Math.floor(num / 1000);
+  const resto = Math.floor(num % 1000);
+  const cent = Math.floor(resto / 100);
+  const dez = Math.floor((resto % 100) / 10);
+  const uni = resto % 10;
+
+  if (milhar > 0) {
+    if (milhar === 1) partes.push("mil");
+    else partes.push(unidades[milhar] + " mil");
+  }
+  if (cent > 0) {
+    if (cent === 1 && dez === 0 && uni === 0) partes.push("cem");
+    else partes.push(centenas[cent]);
+  }
+  if (dez === 1) {
+    partes.push(especiais[uni]);
+  } else {
+    const d = [];
+    if (dez > 1) d.push(dezenas[dez]);
+    if (uni > 0) d.push(unidades[uni]);
+    if (d.length) partes.push(d.join(" e "));
+  }
+
+  return partes.join(" e ") || val;
 }
 
 function mesesPorExtenso(m) {
