@@ -320,7 +320,7 @@ ${p("5.1. Sessões que coincidirem com feriados não são automaticamente repost
 
 ${p("5.2. Férias ou viagens do(a) CONTRATANTE não suspendem a mensalidade, pois o horário e o espaço seguem reservados.")}
 
-${p("5.3. A CONTRATADA poderá usufruir de até dois períodos de férias ao longo do ano, previamente comunicados ao(à) CONTRATANTE. Durante os períodos de férias da CONTRATADA, o valor da mensalidade será reajustado em comum acordo entre as partes, de forma que fique justo para ambas.")}
+${p("5.3. A CONTRATADA poderá usufruir de até dois períodos de férias ao longo do ano, previamente comunicados ao(à) CONTRATANTE. As férias, contabilizando 30 dias, serão distribuídas em duas quinzenas em épocas distintas do ano. O valor da mensalidade será mantido durante as férias para a garantia da reserva do horário e manutenção dos serviços da clínica.")}
 
 ${sec("CLÁUSULA SEXTA — DA PAUSA OU INTERRUPÇÃO DO PROCESSO")}
 
@@ -432,7 +432,7 @@ ${p("5.1. Sessões que coincidirem com feriados não são automaticamente repost
 
 ${p("5.2. Férias ou viagens do(a) BENEFICIÁRIO(A) não suspendem a mensalidade, pois o horário e o espaço seguem reservados.")}
 
-${p("5.3. A CONTRATADA poderá usufruir de até dois períodos de férias ao longo do ano, previamente comunicados ao(à) CONTRATANTE. Durante os períodos de férias da CONTRATADA, o valor da mensalidade será reajustado em comum acordo entre as partes, de forma que fique justo para ambas.")}
+${p("5.3. A CONTRATADA poderá usufruir de até dois períodos de férias ao longo do ano, previamente comunicados ao(à) CONTRATANTE. As férias, contabilizando 30 dias, serão distribuídas em duas quinzenas em épocas distintas do ano. O valor da mensalidade será mantido durante as férias para a garantia da reserva do horário e manutenção dos serviços da clínica.")}
 
 ${sec("CLÁUSULA SEXTA — DA PAUSA OU INTERRUPÇÃO DO PROCESSO")}
 
@@ -624,7 +624,7 @@ function ContractPaperContent({ data }) {
       <h2 id="clausula-5" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS</h2>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.1. Sessões que coincidirem com feriados não são automaticamente repostas. Havendo disponibilidade de agenda, a reposição pode ser combinada.</p>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.2. Férias ou viagens do(a) CONTRATANTE não suspendem a mensalidade, pois o horário e o espaço seguem reservados.</p>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.3. A CONTRATADA poderá usufruir de até dois períodos de férias ao longo do ano, previamente comunicados ao(à) CONTRATANTE. Durante os períodos de férias da CONTRATADA, o valor da mensalidade será reajustado em comum acordo entre as partes, de forma que fique justo para ambas.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.3. A CONTRATADA poderá usufruir de até dois períodos de férias ao longo do ano, previamente comunicados ao(à) CONTRATANTE. As férias, contabilizando 30 dias, serão distribuídas em duas quinzenas em épocas distintas do ano. O valor da mensalidade será mantido durante as férias para a garantia da reserva do horário e manutenção dos serviços da clínica.</p>
 
       <h2 id="clausula-6" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA SEXTA — DA PAUSA OU INTERRUPÇÃO DO PROCESSO</h2>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>6.1. Caso o(a) CONTRATANTE decida pausar ou interromper o acompanhamento, é necessário comunicar com antecedência, preferencialmente em sessão.</p>
@@ -709,7 +709,7 @@ function ContractPaperContentMenor({ data }) {
       <h2 id="clausula-m-5" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS</h2>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.1. Sessões que coincidirem com feriados não são automaticamente repostas. Havendo disponibilidade de agenda, a reposição pode ser combinada.</p>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.2. Férias ou viagens do(a) BENEFICIÁRIO(A) não suspendem a mensalidade, pois o horário e o espaço seguem reservados.</p>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.3. A CONTRATADA poderá usufruir de até dois períodos de férias ao longo do ano, previamente comunicados ao(à) CONTRATANTE. Durante os períodos de férias da CONTRATADA, o valor da mensalidade será reajustado em comum acordo entre as partes, de forma que fique justo para ambas.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.3. A CONTRATADA poderá usufruir de até dois períodos de férias ao longo do ano, previamente comunicados ao(à) CONTRATANTE. As férias, contabilizando 30 dias, serão distribuídas em duas quinzenas em épocas distintas do ano. O valor da mensalidade será mantido durante as férias para a garantia da reserva do horário e manutenção dos serviços da clínica.</p>
 
       <h2 id="clausula-m-6" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA SEXTA — DA PAUSA OU INTERRUPÇÃO DO PROCESSO</h2>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>6.1. Caso o(a) CONTRATANTE decida pausar ou interromper o acompanhamento do(a) BENEFICIÁRIO(A), é necessário comunicar com antecedência, preferencialmente em sessão.</p>
