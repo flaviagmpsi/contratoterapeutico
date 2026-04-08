@@ -312,7 +312,7 @@ ${p("3.4. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposiç�
 
 ${sec("CLÁUSULA QUARTA — DOS MESES COM CINCO SEMANAS")}
 
-${p("4.1. A mensalidade refere-se ao período mensal de acompanhamento, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a realização de uma quinta sessão pode ocorrer conforme disponibilidade de agenda, não sendo obrigatória nem garantida.")}
+${p("4.1. A mensalidade refere-se ao período mensal de acompanhamento, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional, desde que haja disponibilidade de agenda. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.")}
 
 ${sec("CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS")}
 
@@ -424,7 +424,7 @@ ${p("3.4. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposiç�
 
 ${sec("CLÁUSULA QUARTA — DOS MESES COM CINCO SEMANAS")}
 
-${p("4.1. A mensalidade refere-se ao período mensal de acompanhamento, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a realização de uma quinta sessão pode ocorrer conforme disponibilidade de agenda, não sendo obrigatória nem garantida.")}
+${p("4.1. A mensalidade refere-se ao período mensal de acompanhamento, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional, desde que haja disponibilidade de agenda. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.")}
 
 ${sec("CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS")}
 
@@ -619,7 +619,7 @@ function ContractPaperContent({ data }) {
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.4. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) CONTRATANTE não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.</p>
 
       <h2 id="clausula-4" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUARTA — DOS MESES COM CINCO SEMANAS</h2>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>4.1. A mensalidade refere-se ao período mensal de acompanhamento, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a realização de uma quinta sessão pode ocorrer conforme disponibilidade de agenda, não sendo obrigatória nem garantida.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>4.1. A mensalidade refere-se ao período mensal de acompanhamento, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional, desde que haja disponibilidade de agenda. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.</p>
 
       <h2 id="clausula-5" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS</h2>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.1. Sessões que coincidirem com feriados não são automaticamente repostas. Havendo disponibilidade de agenda, a reposição pode ser combinada.</p>
@@ -704,7 +704,7 @@ function ContractPaperContentMenor({ data }) {
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.4. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) BENEFICIÁRIO(A) não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.</p>
 
       <h2 id="clausula-m-4" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUARTA — DOS MESES COM CINCO SEMANAS</h2>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>4.1. A mensalidade refere-se ao período mensal de acompanhamento, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a realização de uma quinta sessão pode ocorrer conforme disponibilidade de agenda, não sendo obrigatória nem garantida.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>4.1. A mensalidade refere-se ao período mensal de acompanhamento, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional, desde que haja disponibilidade de agenda. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.</p>
 
       <h2 id="clausula-m-5" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS</h2>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.1. Sessões que coincidirem com feriados não são automaticamente repostas. Havendo disponibilidade de agenda, a reposição pode ser combinada.</p>
