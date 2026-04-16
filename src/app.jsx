@@ -50,6 +50,7 @@ const DEFAULT_DATA_MENOR = {
   resp_parentesco: "",
   pac_nome: "",
   pac_nascimento: "",
+  pac_cpf: "",
   psi_nome: "Flávia Gonçalves Moreira",
   psi_nacionalidade: "Brasileira, solteira",
   psi_crp: "04/84615",
@@ -147,6 +148,7 @@ const FIELD_GROUPS_MENOR = [
     fields: [
       { id: "pac_nome", label: "Nome Completo", type: "text", ph: "Nome completo do(a) menor" },
       { id: "pac_nascimento", label: "Data de Nascimento", type: "text", ph: "Ex: 15 de janeiro de 2015" },
+      { id: "pac_cpf", label: "CPF", type: "text", ph: "000.000.000-00" },
     ]
   },
   {
@@ -302,17 +304,15 @@ ${p("2.3. A mensalidade contempla: a reserva e proteção do horário na agenda 
 
 ${sec("CLÁUSULA TERCEIRA — DAS DESMARCAÇÕES E FALTAS")}
 
-${p("3.1. Quando o(a) CONTRATANTE desmarcar uma sessão, a mensalidade é mantida, pois o horário segue reservado. A reposição pode ser combinada apenas se houver disponibilidade de agenda, não sendo garantida.")}
+${p("3.1. Quando o(a) CONTRATANTE desmarcar uma sessão, a mensalidade é mantida, pois o horário segue reservado.")}
 
-${p("3.2. Faltas sem aviso prévio de pelo menos 24 (vinte e quatro) horas de antecedência serão cobradas normalmente como sessão realizada.")}
+${p("3.2. Faltas com aviso antecipado possibilitam a reposição da sessão na mesma semana ou dentro do mesmo mês, conforme disponibilidade de agenda.")}
 
-${p("3.3. Faltas com aviso antecipado possibilitam a reposição da sessão na mesma semana, conforme disponibilidade de agenda.")}
-
-${p("3.4. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) CONTRATANTE não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.")}
+${p("3.3. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) CONTRATANTE não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.")}
 
 ${sec("CLÁUSULA QUARTA — DOS MESES COM CINCO SEMANAS")}
 
-${p("4.1. A mensalidade refere-se ao período mensal de acompanhamento, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional, desde que haja disponibilidade de agenda. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.")}
+${p("4.1. A mensalidade refere-se a quatro sessões dentro do mês, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.")}
 
 ${sec("CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS")}
 
@@ -390,7 +390,7 @@ ${sec("DAS PARTES")}
 
 ${p(`<b>CONTRATANTE (RESPONSÁVEL LEGAL):</b> ${d.resp_nome}, ${d.resp_nacionalidade}, ${d.resp_profissao}, inscrito(a) no CPF sob o nº ${d.resp_cpf}, residente e domiciliado(a) no endereço ${d.resp_endereco}, ${d.resp_parentesco} do(a) paciente, doravante denominado(a) CONTRATANTE.`)}
 
-${p(`<b>BENEFICIÁRIO(A) (PACIENTE):</b> ${d.pac_nome}, nascido(a) em ${d.pac_nascimento}, menor de idade, representado(a) neste ato por seu(sua) responsável legal acima qualificado(a).`)}
+${p(`<b>BENEFICIÁRIO(A) (PACIENTE):</b> ${d.pac_nome}, nascido(a) em ${d.pac_nascimento}, inscrito(a) no CPF sob o nº ${d.pac_cpf}, menor de idade, representado(a) neste ato por seu(sua) responsável legal acima qualificado(a).`)}
 
 ${p(`<b>CONTRATADA:</b> ${d.psi_nome}, ${d.psi_nacionalidade}, Psicóloga, inscrita no Conselho Regional de Psicologia sob o CRP ${d.psi_crp}, inscrita no CPF sob o nº ${d.psi_cpf}, com consultório situado na ${d.psi_endereco}, doravante denominada CONTRATADA.`)}
 
@@ -414,17 +414,15 @@ ${p("2.3. A mensalidade contempla: a reserva e proteção do horário na agenda 
 
 ${sec("CLÁUSULA TERCEIRA — DAS DESMARCAÇÕES E FALTAS")}
 
-${p("3.1. Quando o(a) CONTRATANTE desmarcar uma sessão do(a) BENEFICIÁRIO(A), a mensalidade é mantida, pois o horário segue reservado. A reposição pode ser combinada apenas se houver disponibilidade de agenda, não sendo garantida.")}
+${p("3.1. Quando o(a) CONTRATANTE desmarcar uma sessão do(a) BENEFICIÁRIO(A), a mensalidade é mantida, pois o horário segue reservado.")}
 
-${p("3.2. Faltas sem aviso prévio de pelo menos 24 (vinte e quatro) horas de antecedência serão cobradas normalmente como sessão realizada.")}
+${p("3.2. Faltas com aviso antecipado possibilitam a reposição da sessão na mesma semana ou dentro do mesmo mês, conforme disponibilidade de agenda.")}
 
-${p("3.3. Faltas com aviso antecipado possibilitam a reposição da sessão na mesma semana, conforme disponibilidade de agenda.")}
-
-${p("3.4. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) BENEFICIÁRIO(A) não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.")}
+${p("3.3. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) BENEFICIÁRIO(A) não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.")}
 
 ${sec("CLÁUSULA QUARTA — DOS MESES COM CINCO SEMANAS")}
 
-${p("4.1. A mensalidade refere-se ao período mensal de acompanhamento, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional, desde que haja disponibilidade de agenda. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.")}
+${p("4.1. A mensalidade refere-se a quatro sessões dentro do mês, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.")}
 
 ${sec("CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS")}
 
@@ -613,13 +611,12 @@ function ContractPaperContent({ data }) {
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>2.3. A mensalidade contempla: a reserva e proteção do horário na agenda da CONTRATADA; a manutenção da clínica e do serviço; os encontros terapêuticos semanais; e o desenvolvimento contínuo e personalizado do acompanhamento.</p>
 
       <h2 id="clausula-3" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA TERCEIRA — DAS DESMARCAÇÕES E FALTAS</h2>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.1. Quando o(a) CONTRATANTE desmarcar uma sessão, a mensalidade é mantida, pois o horário segue reservado. A reposição pode ser combinada apenas se houver disponibilidade de agenda, não sendo garantida.</p>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.2. Faltas sem aviso prévio de pelo menos 24 (vinte e quatro) horas de antecedência serão cobradas normalmente como sessão realizada.</p>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.3. Faltas com aviso antecipado possibilitam a reposição da sessão na mesma semana, conforme disponibilidade de agenda.</p>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.4. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) CONTRATANTE não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.1. Quando o(a) CONTRATANTE desmarcar uma sessão, a mensalidade é mantida, pois o horário segue reservado.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.2. Faltas com aviso antecipado possibilitam a reposição da sessão na mesma semana ou dentro do mesmo mês, conforme disponibilidade de agenda.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.3. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) CONTRATANTE não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.</p>
 
       <h2 id="clausula-4" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUARTA — DOS MESES COM CINCO SEMANAS</h2>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>4.1. A mensalidade refere-se ao período mensal de acompanhamento, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional, desde que haja disponibilidade de agenda. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>4.1. A mensalidade refere-se a quatro sessões dentro do mês, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.</p>
 
       <h2 id="clausula-5" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS</h2>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.1. Sessões que coincidirem com feriados não são automaticamente repostas. Havendo disponibilidade de agenda, a reposição pode ser combinada.</p>
@@ -678,7 +675,7 @@ function ContractPaperContentMenor({ data }) {
       </p>
 
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>
-        <b>BENEFICIÁRIO(A) (PACIENTE):</b> <span style={ph("pac_nome")}>{v("pac_nome")}</span>, nascido(a) em <span style={ph("pac_nascimento")}>{v("pac_nascimento")}</span>, menor de idade, representado(a) neste ato por seu(sua) responsável legal acima qualificado(a).
+        <b>BENEFICIÁRIO(A) (PACIENTE):</b> <span style={ph("pac_nome")}>{v("pac_nome")}</span>, nascido(a) em <span style={ph("pac_nascimento")}>{v("pac_nascimento")}</span>, inscrito(a) no CPF sob o nº <span style={ph("pac_cpf")}>{v("pac_cpf")}</span>, menor de idade, representado(a) neste ato por seu(sua) responsável legal acima qualificado(a).
       </p>
 
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>
@@ -698,13 +695,12 @@ function ContractPaperContentMenor({ data }) {
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>2.3. A mensalidade contempla: a reserva e proteção do horário na agenda da CONTRATADA; a manutenção da clínica e do serviço; os encontros terapêuticos semanais; e o desenvolvimento contínuo e personalizado do acompanhamento.</p>
 
       <h2 id="clausula-m-3" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA TERCEIRA — DAS DESMARCAÇÕES E FALTAS</h2>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.1. Quando o(a) CONTRATANTE desmarcar uma sessão do(a) BENEFICIÁRIO(A), a mensalidade é mantida, pois o horário segue reservado. A reposição pode ser combinada apenas se houver disponibilidade de agenda, não sendo garantida.</p>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.2. Faltas sem aviso prévio de pelo menos 24 (vinte e quatro) horas de antecedência serão cobradas normalmente como sessão realizada.</p>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.3. Faltas com aviso antecipado possibilitam a reposição da sessão na mesma semana, conforme disponibilidade de agenda.</p>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.4. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) BENEFICIÁRIO(A) não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.1. Quando o(a) CONTRATANTE desmarcar uma sessão do(a) BENEFICIÁRIO(A), a mensalidade é mantida, pois o horário segue reservado.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.2. Faltas com aviso antecipado possibilitam a reposição da sessão na mesma semana ou dentro do mesmo mês, conforme disponibilidade de agenda.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.3. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) BENEFICIÁRIO(A) não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.</p>
 
       <h2 id="clausula-m-4" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUARTA — DOS MESES COM CINCO SEMANAS</h2>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>4.1. A mensalidade refere-se ao período mensal de acompanhamento, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional, desde que haja disponibilidade de agenda. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>4.1. A mensalidade refere-se a quatro sessões dentro do mês, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.</p>
 
       <h2 id="clausula-m-5" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS</h2>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.1. Sessões que coincidirem com feriados não são automaticamente repostas. Havendo disponibilidade de agenda, a reposição pode ser combinada.</p>

@@ -851,17 +851,15 @@ function buildContractHTML(d) {
 
 <p class="section-title">CLAUSULA TERCEIRA - DAS DESMARCACOES E FALTAS</p>
 
-<p>3.1. Quando o(a) CONTRATANTE desmarcar uma sessao, a mensalidade e mantida, pois o horario segue reservado. A reposicao pode ser combinada apenas se houver disponibilidade de agenda, nao sendo garantida.</p>
+<p>3.1. Quando o(a) CONTRATANTE desmarcar uma sessao, a mensalidade e mantida, pois o horario segue reservado.</p>
 
-<p>3.2. Faltas sem aviso previo de pelo menos 24 (vinte e quatro) horas de antecedencia serao cobradas normalmente como sessao realizada.</p>
+<p>3.2. Faltas com aviso antecipado possibilitam a reposicao da sessao na mesma semana ou dentro do mesmo mes, conforme disponibilidade de agenda.</p>
 
-<p>3.3. Faltas com aviso antecipado possibilitam a reposicao da sessao na mesma semana, conforme disponibilidade de agenda.</p>
-
-<p>3.4. Quando a CONTRATADA desmarcar uma sessao, buscara oferecer reposicao dentro do mesmo mes. Caso o(a) CONTRATANTE nao possa comparecer ao horario proposto, o valor da sessao sera descontado da mensalidade seguinte.</p>
+<p>3.3. Quando a CONTRATADA desmarcar uma sessao, buscara oferecer reposicao dentro do mesmo mes. Caso o(a) CONTRATANTE nao possa comparecer ao horario proposto, o valor da sessao sera descontado da mensalidade seguinte.</p>
 
 <p class="section-title">CLAUSULA QUARTA - DOS MESES COM CINCO SEMANAS</p>
 
-<p>4.1. A mensalidade refere-se ao periodo mensal de acompanhamento, independentemente de o mes ter quatro ou cinco semanas. Em meses com cinco semanas, a realizacao de uma quinta sessao pode ocorrer conforme disponibilidade de agenda, nao sendo obrigatoria nem garantida.</p>
+<p>4.1. A mensalidade refere-se a quatro sessoes dentro do mes, independentemente de o mes ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessao esta garantida sem cobranca adicional. Essa sessao extra compensa os periodos de ferias da CONTRATADA, durante os quais a mensalidade e mantida conforme previsto na Clausula Quinta.</p>
 
 <p class="section-title">CLAUSULA QUINTA - DOS FERIADOS E FERIAS</p>
 
@@ -1000,17 +998,15 @@ async function generateDOCX() {
 
                 sectionTitle('CLAUSULA TERCEIRA - DAS DESMARCACOES E FALTAS'),
 
-                normalPara('3.1. Quando o(a) CONTRATANTE desmarcar uma sessao, a mensalidade e mantida, pois o horario segue reservado. A reposicao pode ser combinada apenas se houver disponibilidade de agenda, nao sendo garantida.'),
+                normalPara('3.1. Quando o(a) CONTRATANTE desmarcar uma sessao, a mensalidade e mantida, pois o horario segue reservado.'),
 
-                normalPara('3.2. Faltas sem aviso previo de pelo menos 24 (vinte e quatro) horas de antecedencia serao cobradas normalmente como sessao realizada.'),
+                normalPara('3.2. Faltas com aviso antecipado possibilitam a reposicao da sessao na mesma semana ou dentro do mesmo mes, conforme disponibilidade de agenda.'),
 
-                normalPara('3.3. Faltas com aviso antecipado possibilitam a reposicao da sessao na mesma semana, conforme disponibilidade de agenda.'),
-
-                normalPara('3.4. Quando a CONTRATADA desmarcar uma sessao, buscara oferecer reposicao dentro do mesmo mes. Caso o(a) CONTRATANTE nao possa comparecer ao horario proposto, o valor da sessao sera descontado da mensalidade seguinte.'),
+                normalPara('3.3. Quando a CONTRATADA desmarcar uma sessao, buscara oferecer reposicao dentro do mesmo mes. Caso o(a) CONTRATANTE nao possa comparecer ao horario proposto, o valor da sessao sera descontado da mensalidade seguinte.'),
 
                 sectionTitle('CLAUSULA QUARTA - DOS MESES COM CINCO SEMANAS'),
 
-                normalPara('4.1. A mensalidade refere-se ao periodo mensal de acompanhamento, independentemente de o mes ter quatro ou cinco semanas. Em meses com cinco semanas, a realizacao de uma quinta sessao pode ocorrer conforme disponibilidade de agenda, nao sendo obrigatoria nem garantida.'),
+                normalPara('4.1. A mensalidade refere-se a quatro sessoes dentro do mes, independentemente de o mes ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessao esta garantida sem cobranca adicional. Essa sessao extra compensa os periodos de ferias da CONTRATADA, durante os quais a mensalidade e mantida conforme previsto na Clausula Quinta.'),
 
                 sectionTitle('CLAUSULA QUINTA - DOS FERIADOS E FERIAS'),
 
