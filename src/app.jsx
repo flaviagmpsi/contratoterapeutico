@@ -308,11 +308,11 @@ ${p("3.1. Quando o(a) CONTRATANTE desmarcar uma sessão, a mensalidade é mantid
 
 ${p("3.2. Faltas com aviso antecipado possibilitam a reposição da sessão na mesma semana ou dentro do mesmo mês, conforme disponibilidade de agenda.")}
 
-${p("3.3. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) CONTRATANTE não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.")}
+${p("3.3. Caso a CONTRATADA precise desmarcar uma sessão, buscará oferecer a reposição dentro do mesmo mês, conforme disponibilidade de agenda de ambas as partes. Caso não haja possibilidade de comparecimento do(a) CONTRATANTE à reposição oferecida, a mensalidade permanecerá devida integralmente, não sendo devido desconto ou compensação.")}
 
 ${sec("CLÁUSULA QUARTA — DOS MESES COM CINCO SEMANAS")}
 
-${p("4.1. A mensalidade refere-se a quatro sessões dentro do mês, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.")}
+${p("4.1. A mensalidade é fixa e corresponde às sessões realizadas ao longo do mês contratado, independentemente de este ser composto por 4 (quatro) ou 5 (cinco) semanas. Nos meses em que houver 5 (cinco) semanas, a quinta sessão está incluída no valor da mensalidade, não gerando cobrança adicional.")}
 
 ${sec("CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS")}
 
@@ -418,11 +418,11 @@ ${p("3.1. Quando o(a) CONTRATANTE desmarcar uma sessão do(a) BENEFICIÁRIO(A), 
 
 ${p("3.2. Faltas com aviso antecipado possibilitam a reposição da sessão na mesma semana ou dentro do mesmo mês, conforme disponibilidade de agenda.")}
 
-${p("3.3. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) BENEFICIÁRIO(A) não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.")}
+${p("3.3. Caso a CONTRATADA precise desmarcar uma sessão, buscará oferecer a reposição dentro do mesmo mês, conforme disponibilidade de agenda de ambas as partes. Caso não haja possibilidade de comparecimento do(a) BENEFICIÁRIO(A) à reposição oferecida, a mensalidade permanecerá devida integralmente, não sendo devido desconto ou compensação.")}
 
 ${sec("CLÁUSULA QUARTA — DOS MESES COM CINCO SEMANAS")}
 
-${p("4.1. A mensalidade refere-se a quatro sessões dentro do mês, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.")}
+${p("4.1. A mensalidade é fixa e corresponde às sessões realizadas ao longo do mês contratado, independentemente de este ser composto por 4 (quatro) ou 5 (cinco) semanas. Nos meses em que houver 5 (cinco) semanas, a quinta sessão está incluída no valor da mensalidade, não gerando cobrança adicional.")}
 
 ${sec("CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS")}
 
@@ -613,10 +613,10 @@ function ContractPaperContent({ data }) {
       <h2 id="clausula-3" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA TERCEIRA — DAS DESMARCAÇÕES E FALTAS</h2>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.1. Quando o(a) CONTRATANTE desmarcar uma sessão, a mensalidade é mantida, pois o horário segue reservado.</p>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.2. Faltas com aviso antecipado possibilitam a reposição da sessão na mesma semana ou dentro do mesmo mês, conforme disponibilidade de agenda.</p>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.3. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) CONTRATANTE não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.3. Caso a CONTRATADA precise desmarcar uma sessão, buscará oferecer a reposição dentro do mesmo mês, conforme disponibilidade de agenda de ambas as partes. Caso não haja possibilidade de comparecimento do(a) CONTRATANTE à reposição oferecida, a mensalidade permanecerá devida integralmente, não sendo devido desconto ou compensação.</p>
 
       <h2 id="clausula-4" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUARTA — DOS MESES COM CINCO SEMANAS</h2>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>4.1. A mensalidade refere-se a quatro sessões dentro do mês, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>4.1. A mensalidade é fixa e corresponde às sessões realizadas ao longo do mês contratado, independentemente de este ser composto por 4 (quatro) ou 5 (cinco) semanas. Nos meses em que houver 5 (cinco) semanas, a quinta sessão está incluída no valor da mensalidade, não gerando cobrança adicional.</p>
 
       <h2 id="clausula-5" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS</h2>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.1. Sessões que coincidirem com feriados não são automaticamente repostas. Havendo disponibilidade de agenda, a reposição pode ser combinada.</p>
@@ -697,10 +697,10 @@ function ContractPaperContentMenor({ data }) {
       <h2 id="clausula-m-3" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA TERCEIRA — DAS DESMARCAÇÕES E FALTAS</h2>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.1. Quando o(a) CONTRATANTE desmarcar uma sessão do(a) BENEFICIÁRIO(A), a mensalidade é mantida, pois o horário segue reservado.</p>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.2. Faltas com aviso antecipado possibilitam a reposição da sessão na mesma semana ou dentro do mesmo mês, conforme disponibilidade de agenda.</p>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.3. Quando a CONTRATADA desmarcar uma sessão, buscará oferecer reposição dentro do mesmo mês. Caso o(a) BENEFICIÁRIO(A) não possa comparecer ao horário proposto, o valor da sessão será descontado da mensalidade seguinte.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>3.3. Caso a CONTRATADA precise desmarcar uma sessão, buscará oferecer a reposição dentro do mesmo mês, conforme disponibilidade de agenda de ambas as partes. Caso não haja possibilidade de comparecimento do(a) BENEFICIÁRIO(A) à reposição oferecida, a mensalidade permanecerá devida integralmente, não sendo devido desconto ou compensação.</p>
 
       <h2 id="clausula-m-4" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUARTA — DOS MESES COM CINCO SEMANAS</h2>
-      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>4.1. A mensalidade refere-se a quatro sessões dentro do mês, independentemente de o mês ter quatro ou cinco semanas. Em meses com cinco semanas, a quinta sessão está garantida sem cobrança adicional. Essa sessão extra compensa os períodos de férias da CONTRATADA, durante os quais a mensalidade é mantida conforme previsto na Cláusula Quinta.</p>
+      <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>4.1. A mensalidade é fixa e corresponde às sessões realizadas ao longo do mês contratado, independentemente de este ser composto por 4 (quatro) ou 5 (cinco) semanas. Nos meses em que houver 5 (cinco) semanas, a quinta sessão está incluída no valor da mensalidade, não gerando cobrança adicional.</p>
 
       <h2 id="clausula-m-5" style={{...secStyle,scrollMarginTop:20}}>CLÁUSULA QUINTA — DOS FERIADOS E FÉRIAS</h2>
       <p style={{textAlign:"justify",margin:"6pt 0",lineHeight:1.7}}>5.1. Sessões que coincidirem com feriados não são automaticamente repostas. Havendo disponibilidade de agenda, a reposição pode ser combinada.</p>
